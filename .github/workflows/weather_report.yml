@@ -2,7 +2,11 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
 name: 天气预报推送
-
+env:
+      APP_ID: ${{ secrets.APP_ID }}
+      APP_SECRET: ${{ secrets.APP_SECRET }}
+      OPEN_ID: ${{ secrets.OPEN_ID }}
+      TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
 on:
   schedule:
     # 设置启动时间，为 UTC 时间, UTC23点 对应北京时间早7点
@@ -29,9 +33,4 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run weather Report
-      env:
-        APP_ID: ${{ secrets.APP_ID }}
-        APP_SECRET: ${{ secrets.APP_SECRET }}
-        OPEN_ID: ${{ secrets.OPEN_ID }}
-        TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
       run: python weather_report.py
