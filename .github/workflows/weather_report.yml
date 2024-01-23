@@ -27,11 +27,13 @@ jobs:
     - name: Install dependencies
       run: |
         pip install requests & pip install beautifulsoup4 & pip install html5Lib
-    - name: Run weather Report
-      run: |
-        pwd & ls -a & python weather_report.py
+    - shell: bash
       env:
         APP_ID: ${{ secrets.APP_ID }}
         APP_SECRET: ${{ secrets.APP_SECRET }}
         OPEN_ID: ${{ secrets.OPEN_ID }}
         TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
+    - name: Run weather Report
+      run: |
+        pwd & ls -a & python weather_report.py
+    
