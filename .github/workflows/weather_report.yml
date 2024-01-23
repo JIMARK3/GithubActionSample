@@ -19,16 +19,17 @@ jobs:
     env:
       TZ: Asia/Shanghai
     steps:
-    - name: Setup Python
-      uses: actions/setup-python@v5.0.0
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v3
       with:
-        python-version: "3.10"
+        python-version: "3.12"
     - name: Install dependencies
       run: |
         pip install requests & pip install beautifulsoup4 & pip install html5Lib
     - name: Run weather Report
       run: |
-        pwd & ls -a
+        pwd & ls -a & python weather_report.py
       env:
         APP_ID: ${{ secrets.APP_ID }}
         APP_SECRET: ${{ secrets.APP_SECRET }}
